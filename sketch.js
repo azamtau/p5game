@@ -352,7 +352,7 @@ function showScores() {
   text(lifeScore, 210, 50);
 
   fill(255, 255, 200);
-  image(mushroomImage, 270, 43, 30, 30)
+  image(bulletImage, 270, 43, 30, 30)
   text(bulletsScore, 340, 50);
 }
 
