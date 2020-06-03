@@ -30,7 +30,7 @@ function showForm() {
     form.appendChild(newBtn);
 
     topBlock.appendChild(topDiv);
-    topDiv.appendChild(allBtn);
+    topBlock.appendChild(allBtn);
     
     form.addEventListener('submit', (e) => {
         console.log("button pressed");
@@ -57,7 +57,10 @@ function showForm() {
             .then(data => {
                 let ol = document.createElement('ol');
                 let jd = JSON.parse(data.top);
-                if(ol.hasChildNodes()) {
+                if(topDiv.hasChildNodes()) {
+                    while (topDiv.firstChild) {
+                        topDiv.removeChild(topDiv.firstChild);
+                    }
                     ol.remove();
                 }  
                 
