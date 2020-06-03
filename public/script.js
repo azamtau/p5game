@@ -33,45 +33,43 @@ function showForm() {
     topDiv.appendChild(allBtn);
     
     form.addEventListener('submit', (e) => {
-    console.log("button pressed");
-    fetch('/save', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },        
-        body: JSON.stringify({name: newInput.value, score: mushroomsScore})
-    })
-    .then(resp => resp.json())
-    .then(data => {
-            console.log(data);
-    })
-    .catch(e => console.log(e));
-
-    e.preventDefault();
+        console.log("button pressed");
+        fetch('/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },        
+            body: JSON.stringify({name: newInput.value, score: mushroomsScore})
+        })
+        .then(resp => resp.json())
+        .then(data => {
+                console.log(data);
+        })
+        .catch(e => console.log(e));
+        
+        form.remove();
+        e.preventDefault();     
     });
 
     allBtn.addEventListener('click', (event) => {
-    fetch('/top/3')
-        .then(resp => resp.json())
-        .then(data => {
-            let ol = document.createElement('ol');
-            let jd = JSON.parse(data.top);
-            if(topDiv.hasChildNodes()) {
-                while (topDiv.firstChild) {
-                topDiv.removeChild(topDiv.firstChild);
+        fetch('/top/3')
+            .then(resp => resp.json())
+            .then(data => {
+                let ol = document.createElement('ol');
+                let jd = JSON.parse(data.top);
+                if(ol.hasChildNodes()) {
+                    ol.remove();
+                }  
+                
+                for (let item of jd) {
+                    console.log(item.username, item.score);
+                    let li = document.createElement('li');
+                    li.textContent = `${item.username}: \t${item.score}`;
+                    ol.appendChild(li);
                 }
-                ol.remove();
-            }  
-            
-            for (let item of jd) {
-                console.log(item.username, item.score);
-                let li = document.createElement('li');
-                li.textContent = `${item.username}: \t${item.score}`;
-                ol.appendChild(li);
-            }
-            topDiv.appendChild(ol);
-        })
-        .catch(e => console.log(e));
+                topDiv.appendChild(ol);
+            })
+            .catch(e => console.log(e));
     });
 }
   
