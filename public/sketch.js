@@ -31,6 +31,8 @@ let stars;
 let pixFont;
 let regFont;
 
+let stateChanged = true; // NEW
+
 function preload() {
   headImage = loadImage('assets/boris.png');
   rhinoImage = loadImage('assets/rhinoceros.png');
@@ -81,16 +83,15 @@ function everything() {
     shipHead.rotation -= 4;
   }
   
-  if(keyDown(RIGHT_ARROW)){
+  if(keyDown(RIGHT_ARROW)) {
     shipHead.rotation += 4;
   }
   
-  if(keyDown('z') && bulletsScore > 0) 
-  {
+  if(keyDown('z') && bulletsScore > 0) {
     generateBullet();
   }
   
-  if(keyDown('x')) // keyWentDown
+  if(keyDown('x')) // keyWentDown 
   {
     shipHead.changeAnimation('thrust');
     
@@ -140,7 +141,7 @@ function startGame() {
   rect(20, 20, width - 40, height - 40);
   pop();
 
-  textFont(pixFont, 56, 33);
+  textFont(pixFont, 56);
   fill(12, 12, 75);
   text( "Press S to start", width/2, height/2 - 100);
 
@@ -179,17 +180,23 @@ function gameOver() {
 
   background(255, 33, 33);
   fill(255, 171, 171);
-  textFont(pixFont, 74, 30);
-  text("GAME OVER", width/2, height/2 - 50);
-
+  textFont(pixFont, 74);
+  text("GAME OVER", width/2, height/2 - 150);
+  
   fill(255, 205, 205);
-  textFont(regFont, 34, 10);
-  text("Press R to restart", width/2, height/2 + 50);
+  textFont(regFont, 34);
+  text("Press R to restart", width/2, height/2 - 50);
   gameState = 'over';
+
+  // NEW 
+  if(stateChanged) {
+    stateChanged = false;
+    showForm();
+  }
 
   if(keyIsPressed && key == 'r') 
   {
-    gameState = 'start';
+    document.location.reload(true); // NEW
   }
 }
 
@@ -248,7 +255,7 @@ function renderBlackHole() {
 
 function showInstructions() {
   fill(45, 55, 205);
-  textFont(regFont, 24, 10);
+  textFont(regFont, 24);
   text("Collect mushrooms, avoid rhinos", width/2, height/2);
   text("You get 1 bullet per 5 mushrooms", width/2, height/2 + 50);
   text("Press 'x' to move w acceleration", width/2, height/2 + 100);

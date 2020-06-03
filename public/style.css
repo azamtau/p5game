@@ -1,0 +1,50 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+#start-btn{
+	background: blue;
+	padding-top: 2rem;
+}
+
+.topblock {
+	position: absolute;
+	top: 55%;
+	left: 50%;
+  transform: translateX(-50%);
+}
+
+input[type="text"] {
+	border-radius: 5px 0px 0px 5px;
+    background: #fff;
+    padding: 8px;
+    border: 5px solid #ffabab;
+}
+
+
+button {
+	font-size: 1rem;
+    padding: 0.1rem 0.5rem;
+    border: 6px solid #ffabab;
+    border-radius: 0px 5px 5px 0px;
+    background: #ff2121;
+    font-family: Jost;
+    color: #fff;
+    cursor: pointer;
+}
+
+.top-list {
+  font-family: Jost;
+  font-size: 1.5rem;
+}
+
+.top-btn {
+  width: 100%;
+  margin-top: 1rem;
+  background: #e42c2c;
+  border: 6px solid #e42c2c;
+}

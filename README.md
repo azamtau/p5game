@@ -9,4 +9,4 @@ p5.js game example for CS101 2020 [NUST MISIS]
 4. Use Web Server URL (127.0.0.1:XXXX) to run game in Chrome Browser.
 
 
-![p5 game](assets/33.gif)
+![p5 game](public/assets/33.gif)
